@@ -2,9 +2,11 @@ name: Build
 
 on:
   push:
-    tags:
-    - 'v*'
-    - master
+    branches:
+     - master
+    #tags:
+    #- 'v*'
+    #- master
 
 jobs:
   build_wheels:
