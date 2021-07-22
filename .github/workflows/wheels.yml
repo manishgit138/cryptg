@@ -21,7 +21,7 @@ jobs:
             arch: aarch64
 
     env:
-      CIBW_SKIP: ?p27-*
+      CIBW_SKIP: "?p27-* cp35-*"
       CIBW_ARCHS_LINUX: ${{matrix.arch}}
       CIBW_BUILD_VERBOSITY: 3
       BUILD_OUTPUT_PATH: wheelhouse
