@@ -26,6 +26,7 @@ jobs:
       CIBW_BEFORE_BUILD: "pip install --upgrade pip && python -m pip install -r requirements.txt"
       CIBW_BEFORE_ALL_LINUX: "curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain=stable && cp -r /root/.cargo/bin/* /usr/bin/."
       CIBW_BEFORE_ALL_WINDOWS: "curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain=stable"
+      CIBW_BEFORE_ALL_MACOS: "curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain=stable"
       CIBW_BUILD_VERBOSITY: 3
       BUILD_OUTPUT_PATH: wheelhouse
 
