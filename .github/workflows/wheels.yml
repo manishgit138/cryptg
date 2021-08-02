@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, macOS-10.15]
+        os: [ubuntu-20.04]
         arch: [auto]
         include:
           - os: ubuntu-20.04
@@ -25,8 +25,6 @@ jobs:
       CIBW_ARCHS_LINUX: ${{matrix.arch}}
       CIBW_BEFORE_BUILD: "pip install --upgrade pip && python -m pip install -r requirements.txt"
       CIBW_BEFORE_ALL_LINUX: "curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain=stable && cp -r /root/.cargo/bin/* /usr/bin/."
-      CIBW_BEFORE_ALL_WINDOWS: "curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain=stable"
-      CIBW_BEFORE_ALL_MACOS: "curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain=stable"
       CIBW_BUILD_VERBOSITY: 3
       BUILD_OUTPUT_PATH: wheelhouse
 
@@ -46,10 +44,7 @@ jobs:
         run: python -m pip install cibuildwheel==1.10.0
 
       - name: Build wheels
-        run: |
-          curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain=stable
-          source $HOME/.cargo/env
-          python -m cibuildwheel --output-dir "$BUILD_OUTPUT_PATH"
+        run: python -m cibuildwheel --output-dir "$BUILD_OUTPUT_PATH"
 
       - uses: actions/upload-artifact@v2
         with:
